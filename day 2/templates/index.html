@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 2 - TTS Voice Generator</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #f9f9f9;">
+
+  <h2>🗣️ Day 2 - Text to Speech</h2>
+  <p>Enter your message below and hear it as audio</p>
+
+  <input type="text" id="textInput" placeholder="Type your message here" style="padding: 10px; width: 80%; max-width: 300px;" required>
+  <br><br>
+  <button onclick="generateTTS()" style="padding: 10px 20px;">Generate Voice</button>
+
+  <div id="audioContainer" style="margin-top: 20px;">
+    <audio id="audioPlayer" controls hidden></audio>
+  </div>
+
+  <script src="/day 2/static/script.js"></script>
+</body>
+</html>
