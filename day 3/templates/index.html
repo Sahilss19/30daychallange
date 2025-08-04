@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 3 - TTS Agent</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2.5rem 3rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .card h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #00eaff;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #cfd8dc;
+      margin-bottom: 1.5rem;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 15px;
+      font-size: 1rem;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #00eaff;
+      border-radius: 12px;
+      resize: none;
+      outline: none;
+      transition: 0.3s;
+      margin-bottom: 1.2rem;
+    }
+
+    textarea:focus {
+      border-color: #1de9b6;
+      box-shadow: 0 0 12px #1de9b688;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      font-weight: bold;
+      background: #00eaff;
+      color: #000;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #1de9b6;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px #1de9b666;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    audio[src] {
+      display: block;
+    }
+
+    .footer {
+      margin-top: 1.8rem;
+      font-size: 0.8rem;
+      color: #b0bec5;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>DAY 3 - Voice Agent</h1>
+    <p>Just type and listen  :) </p>
+
+    <textarea id="textInput" placeholder="Type something to speak..."></textarea>
+    <button onclick="generateTTS()">Speak Now</button>
+
+    <audio id="audioPlayer" controls></audio>
+
+    <div class="footer">sahilkulria27@gmail.com</div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
