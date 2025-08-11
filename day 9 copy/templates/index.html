@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conversational Agent with History</title>
+    <style>
+        :root {
+            --primary-color: #5C67F2;
+            --secondary-color: #f0f0f0;
+            --user-bubble-bg: #e2e8f0;
+            --agent-bubble-bg: #fff;
+            --text-color-dark: #2d3748;
+            --text-color-light: #4a5568;
+            --border-color: #e2e8f0;
+            --success-color: #48bb78;
+            --danger-color: #f56565;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 5px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            color: var(--text-color-dark);
+        }
+
+        .main-wrapper {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            width: 800px; /* Fixed width for a "half-screen" feel */
+            height: 600px; /* Fixed height */
+            overflow: hidden;
+        }
+
+        .controls-container {
+            padding: 30px;
+            max-width: 400px;
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            background: #fdfdfd;
+            border-right: 1px solid var(--border-color);
+            justify-content: space-between;
+        }
+
+        .chat-container {
+            padding: 30px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            background: #f7fafc;
+        }
+
+        .header {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header h2 {
+            font-weight: 700;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .chat-history {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-right: 10px;
+            padding-bottom: 20px;
+        }
+
+        .chat-history p {
+            margin: 0;
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 75%;
+            word-wrap: break-word;
+            font-size: 1rem;
+            line-height: 1.4;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .user-message {
+            background-color: var(--user-bubble-bg);
+            align-self: flex-end;
+        }
+
+        .agent-message {
+            background-color: var(--agent-bubble-bg);
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+        }
+
+        .controls-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            flex-grow: 1;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #startBtn {
+            background: var(--success-color);
+            color: white;
+        }
+
+        #startBtn:hover:not(:disabled) {
+            background: #38a169;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        #stopBtn {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        #stopBtn:hover:not(:disabled) {
+            background: #e53e3e;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        audio {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .status-area {
+            margin-top: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--text-color-light);
+            min-height: 20px;
+        }
+
+        .recording-indicator {
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--danger-color);
+            animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+
+        .session-id-display {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            font-weight: 400;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="controls-container">
+            <div>
+                <div class="header">
+                    <h2>DAY 10</h2>
+                    <h2>ASK ME ANYTHING :)</h2>
+                </div>
+                <div class="main-controls">
+          <p hidden>Session ID: <span id="sessionId"></span></p>
+                    <div class="controls-row">
+                        <button id="startBtn">Start Recording</button>
+                        <button id="stopBtn" disabled>Stop Recording</button>
+                    </div>
+                    <audio id="audioPlayer" controls hidden></audio>
+                </div>
+            </div>
+            <div class="status-area" id="statusDisplay">Click Start button</div>
+            <div class="recording-indicator" id="recordingIndicator" hidden>
+                Recording in progress...
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <h3>Chat History<h3>
+            <div id="chatHistory" class="chat-history">
+                </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
