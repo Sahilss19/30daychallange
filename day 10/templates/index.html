@@ -5,89 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Conversational Agent with History</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
         :root {
-            --primary-color: #5C67F2;
-            --secondary-color: #f0f0f0;
-            --user-bubble-bg: #e2e8f0;
+            --primary-color: #6a11cb;
+            --primary-gradient: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+            --secondary-color: #e9f0f8;
+            --user-bubble-bg: #dcf8c6;
             --agent-bubble-bg: #fff;
-            --text-color-dark: #2d3748;
-            --text-color-light: #4a5568;
-            --border-color: #e2e8f0;
-            --success-color: #48bb78;
-            --danger-color: #f56565;
-            --shadow: 0 10px 25px -5px rgba(0,0,0,0.1), 0 5px 10px -5px rgba(0,0,0,0.04);
+            --text-color: #333;
+            --shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            --border-color: #e0e0e0;
+            --success-color: #4CAF50;
+            --danger-color: #f44336;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: var(--secondary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            color: var(--text-color-dark);
+            color: var(--text-color);
         }
 
-        .main-wrapper {
-            display: flex;
+        .chat-widget-container {
+            width: 100%;
+            max-width: 500px;
+            height: 80vh;
+            max-height: 800px;
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
-            width: 800px; /* Fixed width for a "half-screen" feel */
-            height: 600px; /* Fixed height */
+            display: flex;
+            flex-direction: column;
             overflow: hidden;
         }
-
-        .controls-container {
-            padding: 30px;
-            max-width: 400px;
-            width: 40%;
-            display: flex;
-            flex-direction: column;
+        
+        .chat-header {
+            background: var(--primary-color);
+            background: var(--primary-gradient);
+            color: white;
+            padding: 20px;
             text-align: center;
-            background: #fdfdfd;
-            border-right: 1px solid var(--border-color);
-            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
         }
 
-        .chat-container {
-            padding: 30px;
-            width: 60%;
-            display: flex;
-            flex-direction: column;
-            background: #f7fafc;
-        }
-
-        .header {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .header h2 {
-            font-weight: 700;
+        .chat-header h3 {
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
 
         .chat-history {
             flex-grow: 1;
+            padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            padding-right: 10px;
-            padding-bottom: 20px;
+            gap: 10px;
         }
 
         .chat-history p {
             margin: 0;
             padding: 12px 18px;
             border-radius: 20px;
-            max-width: 75%;
+            max-width: 80%;
             word-wrap: break-word;
-            font-size: 1rem;
+            font-size: 0.9rem;
             line-height: 1.4;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             position: relative;
@@ -96,18 +84,30 @@
         .user-message {
             background-color: var(--user-bubble-bg);
             align-self: flex-end;
+            border-bottom-right-radius: 5px;
         }
 
         .agent-message {
             background-color: var(--agent-bubble-bg);
             border: 1px solid var(--border-color);
             align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .controls-container {
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background: var(--secondary-color);
+            border-top: 1px solid var(--border-color);
+            text-align: center;
         }
 
         .controls-row {
             display: flex;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 10px;
         }
 
         button {
@@ -126,47 +126,31 @@
             background: var(--success-color);
             color: white;
         }
-
-        #startBtn:hover:not(:disabled) {
-            background: #38a169;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-
+        
         #stopBtn {
             background: var(--danger-color);
             color: white;
         }
 
-        #stopBtn:hover:not(:disabled) {
-            background: #e53e3e;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        }
-
         button:disabled {
             background: #ccc;
             cursor: not-allowed;
-            transform: none;
             box-shadow: none;
         }
 
         audio {
-            margin-top: 20px;
             width: 100%;
+            margin-top: 10px;
         }
 
         .status-area {
-            margin-top: 20px;
-            font-weight: 500;
             font-size: 0.9rem;
-            color: var(--text-color-light);
+            color: var(--text-color);
             min-height: 20px;
         }
 
         .recording-indicator {
-            margin-top: 10px;
-            font-weight: bold;
+            font-weight: 600;
             color: var(--danger-color);
             animation: pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
@@ -175,42 +159,31 @@
             0%, 100% { opacity: 1; }
             50% { opacity: .5; }
         }
-
-        .session-id-display {
-            font-size: 0.8rem;
-            color: #a0aec0;
-            font-weight: 400;
-            margin-top: 10px;
-        }
     </style>
 </head>
 <body>
-    <div class="main-wrapper">
+    <div class="chat-widget-container">
+        <div class="chat-header">
+            <h3>MY ASSISTANT AI </h3>
+            <p style="font-size: 0.8rem; color: #a0aec0; font-weight: 400; margin-top: 5px;">Session ID: <span id="sessionId"></span></p>
+        </div>
+
+        <div id="chatHistory" class="chat-history">
+            <p class="agent-message">Hi there! I'm ready to chat. Click the 'Start Recording' button to begin.</p>
+        </div>
+
         <div class="controls-container">
-            <div>
-                <div class="header">
-                    <h2>DAY 10</h2>
-                    <h2>ASK ME ANYTHING :)</h2>
-                </div>
-                <div class="main-controls">
-          <p hidden>Session ID: <span id="sessionId"></span></p>
-                    <div class="controls-row">
-                        <button id="startBtn">Start Recording</button>
-                        <button id="stopBtn" disabled>Stop Recording</button>
-                    </div>
-                    <audio id="audioPlayer" controls hidden></audio>
-                </div>
+            <audio id="audioPlayer" controls hidden></audio>
+            
+            <div class="controls-row">
+                <button id="startBtn">Start Recording</button>
+                <button id="stopBtn" disabled>Stop Recording</button>
             </div>
-            <div class="status-area" id="statusDisplay">Click Start button</div>
+            
+            <div id="statusDisplay" class="status-area">Click Start Recording to begin.</div>
             <div class="recording-indicator" id="recordingIndicator" hidden>
                 Recording in progress...
             </div>
-        </div>
-
-        <div class="chat-container">
-            <h3>Chat History<h3>
-            <div id="chatHistory" class="chat-history">
-                </div>
         </div>
     </div>
 

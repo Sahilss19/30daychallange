@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // --- UI Elements ---
     const startBtn = document.getElementById("startBtn");
     const stopBtn = document.getElementById("stopBtn");
     const audioPlayer = document.getElementById("audioPlayer");
@@ -7,18 +8,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const sessionIdSpan = document.getElementById("sessionId");
     const chatHistoryDiv = document.getElementById("chatHistory");
 
+    // --- State Variables ---
     let mediaRecorder;
     let recordedChunks = [];
     let sessionId;
 
+    // --- SESSION MANAGEMENT ---
     const urlParams = new URLSearchParams(window.location.search);
     sessionId = urlParams.get('session_id');
     if (!sessionId) {
         sessionId = crypto.randomUUID();
         window.history.replaceState({}, '', `?session_id=${sessionId}`);
     }
-    sessionIdSpan.textContent = sessionId;
+    
+    // This line will now work correctly because the HTML element exists
+    const shortSessionId = `${sessionId.substring(0, 4)}...${sessionId.slice(-4)}`;
+    sessionIdSpan.textContent = shortSessionId;
 
+    // --- MAIN LOGIC ---
+
+    // Event listener to automatically start recording after the AI's response ends
     audioPlayer.addEventListener("ended", () => {
         statusDisplay.textContent = "I'm listening... Click Stop to send.";
         startRecording();
@@ -45,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             mediaRecorder.onstop = () => {
+                // The stream tracks should be stopped here to release the microphone
                 stream.getTracks().forEach(track => track.stop());
                 handleStopRecording();
             };
@@ -56,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             startBtn.disabled = false;
             stopBtn.disabled = true;
             recordingIndicator.hidden = true;
-            statusDisplay.textContent = "Ready to chat";
+            statusDisplay.textContent = "Ready to chat!";
         }
     };
 
@@ -84,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 audioPlayer.src = result.audio_url;
                 audioPlayer.hidden = false;
                 audioPlayer.play();
+                // The next recording will start automatically on audioPlayer.ended
             } else {
                 statusDisplay.textContent = `❌ Error: ${result.error || "Failed to get response."}`;
                 startBtn.disabled = false;
@@ -118,5 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    statusDisplay.textContent = "sahilkulria27";
+    // Initial state setup
+    statusDisplay.textContent = "Ready to chat!";
 });
