@@ -1,47 +1,137 @@
- My AI Voice Assistant - Building with #BuildwithMurf and #30DaysofVoiceAgents!
+# 🎤 AI Voice Agent – #30DaysOfVoiceAgents Challenge
+
+An **end-to-end AI-powered conversational voice bot** built with **FastAPI**, **AssemblyAI**, **Murf AI**, and **Google Gemini**.
+
+This bot can:
+- 🎙 Listen to your voice
+- 📝 Transcribe speech to text
+- 🤖 Understand context using an LLM
+- 🔊 Reply in natural-sounding speech
+- 💬 Maintain conversation history
+
+---
+
+## 📅 Journey: Day 1 – Day 13
+
+| Day | Task | Key Outcome |
+|-----|------|-------------|
+| 1️⃣ | Project Setup | FastAPI + HTML/JS frontend |
+| 2️⃣ | REST TTS API | Murf text-to-speech endpoint |
+| 3️⃣ | Play TTS Audio | UI to play generated speech |
+| 4️⃣ | Echo Bot v1 | Record & replay user voice |
+| 5️⃣ | Send Audio to Server | Upload & save recordings |
+| 6️⃣ | Server Transcription | AssemblyAI transcription |
+| 7️⃣ | Echo Bot v2 | Murf voice for echo |
+| 8️⃣ | LLM Integration | Google Gemini API |
+| 9️⃣ | Full Pipeline | Voice → LLM → Voice |
+| 🔟 | Chat History | Session-based memory |
+| 1️⃣1️⃣ | Error Handling | Client & server resilience |
+| 1️⃣2️⃣ | UI Revamp | Conversational UI & dynamic button |
+| 1️⃣3️⃣ | Documentation | README + setup guide |
+
+---
+
+## 🛠 Technologies
+- **Backend**: FastAPI (Python)
+- **Frontend**: HTML, CSS, JavaScript
+- **STT**: [AssemblyAI](https://www.assemblyai.com/)
+- **TTS**: [Murf AI](https://murf.ai/)
+- **LLM**: [Google Gemini](https://ai.google.dev/)
+- **Browser API**: MediaRecorder API
+
+---
+
+## 🏗 Architecture Diagram
+
+```plaintext
+┌───────────────┐
+│   User Voice  │
+└───────┬───────┘
+        │ 🎙
+        ▼
+┌────────────────────┐
+│ STT (AssemblyAI)   │
+│ Speech → Text      │
+└─────────┬──────────┘
+          │ 📝
+          ▼
+┌────────────────────┐
+│ LLM (Google Gemini)│
+│ Understand Context │
+└─────────┬──────────┘
+          │ 💡
+          ▼
+┌────────────────────┐
+│ TTS (Murf AI)      │
+│ Text → Speech      │
+└─────────┬──────────┘
+          │ 🔊
+          ▼
+┌────────────────────┐
+│ Voice Response     │
+└────────────────────┘
+
+💬 Conversation history stored per session
 
 
-Hey everyone! 👋 I'm excited to share my latest project: a simple yet powerful AI voice assistant! This project is part of the #BuildwithMurf and #30DaysofVoiceAgents challenge, and it's been an incredible learning experience.
+✨ Features
 
-✨ What It Does
-Talk to AI! 🎙️ Speak into your microphone and have a natural conversation.
+🎤 Record voice directly in the browser
 
-Remembers Your Chat! The assistant keeps track of your previous messages.
+📝 Accurate transcription with AssemblyAI
 
-Handles Errors Like a Pro! 💪 Built with robust error handling, so no crashes if an AI service hiccups. You'll get a friendly message instead.
+🤖 Context-aware LLM responses
 
-Clean & Simple Interface! 📱 A user-friendly chat design with an animated microphone button.
+🔊 Realistic Murf voice output
 
-🛠️ Built Using
-Backend (Brain): Python with FastAPI
+💬 Persistent chat history
 
-Frontend (Looks & Feels): HTML , CSS , JavaScript 
+⚠ Error handling & fallback responses
 
-Speech-to-Text: AssemblyAI 
 
-AI Model: Google Gemini 
+==============================================================================================================================================================================
 
-Text-to-Speech: Murf AI 
+ File Structure
+Ensure your project directory is organized as follows:
 
-Get it Running Locally!
-Want to try it out? Here’s how:
+/my_project/
+├── main.py
+├── .env
+├── requirements.txt
+├── /static/
+│   └── script.js
+├── /templates/
+│   └── index.html
 
-Grab the Code: Make sure you have all the project files (main.py, .env, requirements.txt, static/, templates/).
 
-Install Tools: Open your terminal in the project folder and run:
+==========================================================================================================================================================================
+
+4.2. Install Dependencies
+Activate your Python virtual environment and install the required packages:
+
+Bash
+
 pip install -r requirements.txt
+The requirements.txt file should contain:
 
-Add Your Secret Keys: Fill in your API keys in the .env file:
+fastapi
+uvicorn
+python-dotenv
+requests
+assemblyai
+google-generativeai
+4.3. Set Environment Variables
+Create and fill in your API keys in the .env file:
+
+Code snippet
 
 MURF_API_KEY="your_murf_api_key_here"
 ASSEMBLYAI_API_KEY="your_assemblyai_api_key_here"
 GEMINI_API_KEY="your_gemini_api_key_here"
+4.4. Start the Server
+From the project root directory, run the following command:
 
-Fire Up the Server: Run this command in your terminal:
+Bash
+
 uvicorn main:app --reload
-
-Open in Your Browser: Go to http://127.0.0.1:8000 and start chatting!
-
-I'll be sharing more about my journey and specific features soon! Stay tuned! 😉
-
-#AI #VoiceAssistant #Python #FastAPI #JavaScript #MachineLearning #MurfAI #30DaysOfVoiceAgents #BuildWithMurf #India
+The application will be accessible at http://127.0.0.1:8000.
