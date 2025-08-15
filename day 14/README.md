@@ -28,6 +28,10 @@ This bot can:
 | 1️⃣1️⃣ | Error Handling | Client & server resilience |
 | 1️⃣2️⃣ | UI Revamp | Conversational UI & dynamic button |
 | 1️⃣3️⃣ | Documentation | README + setup guide |
+| 1️⃣4️⃣ |Refactor Code & GitHub |
+
+
+
 
 ---
 
