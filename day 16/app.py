@@ -55,7 +55,7 @@ async def home(request: Request):
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
-    logger.info("🎤 New client connected for audio stream.")
+    logger.info(" Sahil ready for audio stream")
     
     audio_file_path = "recorded_audio.webm"
     
