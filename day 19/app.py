@@ -66,25 +66,19 @@ async def websocket_audio_streaming(websocket: WebSocket):
 
     # ---- Event Handlers ----
     def on_begin(self, event: BeginEvent):
-        print(f"\n🔵 Session started: {event.id}")
+        print(f"\n Session started: {event.id}")
 
     def on_turn(self, event: TurnEvent):
         transcript = event.transcript
 
         if event.end_of_turn:
-            # 🎙 Show user message
-            print(f"\n🎙 User: {transcript}")
-
-            # LLM streaming call
+            print(f"\n User: {transcript}")
             try:
                 session_id = "default_session"
                 history = chat_histories.get(session_id, [])
                 llm_response = llm.stream_llm_response(transcript, history)
+                print(f" Ai: {llm_response}\n")
 
-                # 🤖 Show bot reply
-                print(f"🤖 Bot: {llm_response}\n")
-
-                # Chat history update
                 chat_histories[session_id] = history + [
                     {"role": "user", "parts": transcript},
                     {"role": "model", "parts": llm_response}
