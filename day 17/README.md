@@ -1,53 +1,56 @@
-# 🎤 AI Voice Agent – #30DaysOfVoiceAgents Challenge
+🎤 AI Voice Agent – #30DaysOfVoiceAgents Challenge
 
-An **end-to-end AI-powered conversational voice bot** built with **FastAPI**, **AssemblyAI**, **Murf AI**, and **Google Gemini**.
+An end-to-end AI-powered conversational voice bot built with FastAPI, AssemblyAI, Murf AI, and Google Gemini.
 
 This bot can:
-- 🎙 Listen to your voice
-- 📝 Transcribe speech to text
-- 🤖 Understand context using an LLM
-- 🔊 Reply in natural-sounding speech
-- 💬 Maintain conversation history
 
----
+🎙 Listen to your voice
 
-## 📅 Journey: Day 1 – Day 13
+📝 Transcribe speech to text
 
-| Day | Task | Key Outcome |
-|-----|------|-------------|
-| 1️⃣ | Project Setup | FastAPI + HTML/JS frontend |
-| 2️⃣ | REST TTS API | Murf text-to-speech endpoint |
-| 3️⃣ | Play TTS Audio | UI to play generated speech |
-| 4️⃣ | Echo Bot v1 | Record & replay user voice |
-| 5️⃣ | Send Audio to Server | Upload & save recordings |
-| 6️⃣ | Server Transcription | AssemblyAI transcription |
-| 7️⃣ | Echo Bot v2 | Murf voice for echo |
-| 8️⃣ | LLM Integration | Google Gemini API |
-| 9️⃣ | Full Pipeline | Voice → LLM → Voice |
-| 🔟 | Chat History | Session-based memory |
-| 1️⃣1️⃣ | Error Handling | Client & server resilience |
-| 1️⃣2️⃣ | UI Revamp | Conversational UI & dynamic button |
-| 1️⃣3️⃣ | Documentation | README + setup guide |
-| 1️⃣4️⃣ |Refactor Code & GitHub |
+🤖 Understand context using an LLM
+
+🔊 Reply in natural-sounding speech
+
+💬 Maintain conversation history
+
+📅 Journey: Day 1 – Day 16
+Day	Task	Key Outcome
+1️⃣	Project Setup	FastAPI backend + HTML/JS frontend
+2️⃣	REST TTS API	Murf text-to-speech endpoint working
+3️⃣	Play TTS Audio	UI to send text → get speech playback
+4️⃣	Echo Bot v1	Record & replay user voice (MediaRecorder API)
+5️⃣	Send Audio to Server	Upload recorded audio to FastAPI
+6️⃣	Server Transcription	AssemblyAI speech-to-text integration
+7️⃣	Echo Bot v2	Murf AI speaks back what you said
+8️⃣	LLM Integration	Google Gemini API connected
+9️⃣	Full Pipeline	Voice → STT → LLM → TTS → Voice
+🔟	Chat History	Session-based memory enabled
+1️⃣1️⃣	Error Handling	Robust server & client fallbacks
+1️⃣2️⃣	UI Revamp	Clean conversational UI & animated record button
+1️⃣3️⃣	Documentation	Initial README & setup guide
+1️⃣4️⃣	Refactor + GitHub	Services folder + schemas + logging
+1️⃣5️⃣	WebSockets	Client-server messaging with /ws
+1️⃣6️⃣	Streaming Audio	Real-time audio sent & saved via WebSocket
+1️⃣7️⃣   WebSocket in UI HTML/JS frontend connects to /ws and exchanges live messages
 
 
 
+🛠 Technologies
 
----
+Backend: FastAPI (Python)
 
-## 🛠 Technologies
-- **Backend**: FastAPI (Python)
-- **Frontend**: HTML, CSS, JavaScript
-- **STT**: [AssemblyAI](https://www.assemblyai.com/)
-- **TTS**: [Murf AI](https://murf.ai/)
-- **LLM**: [Google Gemini](https://ai.google.dev/)
-- **Browser API**: MediaRecorder API
+Frontend: HTML, CSS, JavaScript
 
----
+STT: AssemblyAI
 
-## 🏗 Architecture Diagram
+TTS: Murf AI
 
-```plaintext
+LLM: Google Gemini
+
+Browser API: MediaRecorder API, WebSockets
+
+🏗 Architecture Diagram
 ┌───────────────┐
 │   User Voice  │
 └───────┬───────┘
@@ -77,8 +80,7 @@ This bot can:
 
 💬 Conversation history stored per session
 
-
-✨ Features
+✨ Features (till Day 16)
 
 🎤 Record voice directly in the browser
 
@@ -90,52 +92,40 @@ This bot can:
 
 💬 Persistent chat history
 
-⚠ Error handling & fallback responses
+⚡ WebSocket-based streaming pipeline
 
+🛡 Error handling & resilience
 
-==============================================================================================================================================================================
-
- File Structure
-Ensure your project directory is organized as follows:
-
-/my_project/
-├── main.py
-├── .env
-├── requirements.txt
-├── /static/
+📂 File Structure
+/voice-agent/
+├── app.py                # FastAPI entrypoint
+├── .env                  # API keys
+├── requirements.txt      
+├── /services/            # STT, TTS, LLM integrations
+├── /static/              # JS, CSS
 │   └── script.js
-├── /templates/
+├── /templates/           
 │   └── index.html
+├── /uploads/             # Temp audio files
 
+⚙️ Setup & Run
 
-==========================================================================================================================================================================
-
-4.2. Install Dependencies
-Activate your Python virtual environment and install the required packages:
-
-Bash
+1️⃣ Clone repo & install deps:
 
 pip install -r requirements.txt
-The requirements.txt file should contain:
 
-fastapi
-uvicorn
-python-dotenv
-requests
-assemblyai
-google-generativeai
-4.3. Set Environment Variables
-Create and fill in your API keys in the .env file:
 
-Code snippet
+2️⃣ Add .env file:
 
-MURF_API_KEY="your_murf_api_key_here"
-ASSEMBLYAI_API_KEY="your_assemblyai_api_key_here"
-GEMINI_API_KEY="your_gemini_api_key_here"
-4.4. Start the Server
-From the project root directory, run the following command:
+MURF_API_KEY=your_murf_key
+ASSEMBLYAI_API_KEY=your_assemblyai_key
+GEMINI_API_KEY=your_gemini_key
 
-Bash
 
-uvicorn main:app --reload
-The application will be accessible at http://127.0.0.1:8000.
+3️⃣ Run server:
+
+uvicorn app:app --reload
+
+
+4️⃣ Open browser at:
+👉 http://127.0.0.1:8000
