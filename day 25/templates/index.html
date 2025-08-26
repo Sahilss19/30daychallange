@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DAY 25</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-widget-container {
+      width: 400px;
+      height: 650px;
+      background: #fff;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 25px 20px 20px 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .chat-header p {
+      margin: 5px 0 10px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .chat-header select {
+      padding: 6px 12px;
+      border-radius: 12px;
+      border: none;
+      font-family: 'Poppins', sans-serif;
+      margin-top: 8px;
+    }
+
+    #chat-log {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .message {
+      padding: 10px 14px;
+      border-radius: 16px;
+      max-width: 75%;
+      word-wrap: break-word;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .message.user {
+      background: #667eea;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 6px;
+    }
+
+    .message.assistant {
+      background: #e5e7eb;
+      color: #111827;
+      align-self: flex-start;
+      border-bottom-left-radius: 6px;
+    }
+
+    .controls-container {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid #e5e7eb;
+      background: #fff;
+    }
+
+    #recordBtn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background: #667eea;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    #recordBtn.recording {
+      background: #e74c3c;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+      70% { transform: scale(1.1); box-shadow: 0 0 0 15px rgba(231, 76, 60, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+    }
+
+    #statusDisplay {
+      font-size: 14px;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="chat-widget-container">
+    <div class="chat-header">
+      <h3>DAY 25</h3>
+      <p id="personaLabel">Your AI Assistant</p>
+      <select id="personaSelect">
+        <option value="cowboy">Cowboy</option>
+        <option value="pirate">Pirate</option>
+        <option value="robot">Robot</option>
+        <option value="teacher">Teacher</option>
+        <option value="me">@sahilkulria27</option>
+      </select>
+    </div>
+
+    <div id="chat-log">
+      <p class="assistant message">Click the microphone to begin.</p>
+    </div>
+
+    <div class="controls-container">
+      <audio id="audioPlayer" hidden></audio>
+      <button id="recordBtn">🎤</button>
+      <div id="statusDisplay">Click the microphone to begin.</div>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+  <script>
+    const personaSelect = document.getElementById("personaSelect");
+    const personaLabel = document.getElementById("personaLabel");
+
+    personaSelect.addEventListener("change", () => {
+      personaLabel.innerText = "Your " + personaSelect.value.charAt(0).toUpperCase() + personaSelect.value.slice(1) + " AI Assistant";
+    });
+  </script>
+</body>
+</html>
