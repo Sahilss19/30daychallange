@@ -75,7 +75,7 @@ def get_llm_response(
             "hey": "Hey buddy, welcome to Silly Yard :) How can I make your day brighter? 😄",
             "bye": "ooooo noooo , ok buddy Catch you later👋",
             "goodbye": "ooooo noooo , ok buddy Catch you later👋",
-            "goodnight": "ooooo noooo , ok buddy Catch you later👋",
+            "good night": "Ok Buddy , GOOD NIGHT :) Sleep tight! 🌙😴",
             "see you": "ooooo noooo , ok buddy Catch you later👋",
             "thanks": "Anytime, amigo! 🤝 Always here to help.",
             "thank you": "Anytime, amigo! 🤝 Always here to help.",
