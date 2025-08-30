@@ -132,7 +132,6 @@ pip install -r requirements.txt
 
 Create a `.env` file inside `uploads/`:
 
-```env
 ASSEMBLYAI_API_KEY=your_key
 GEMINI_API_KEY=your_key
 MURF_API_KEY=your_key
