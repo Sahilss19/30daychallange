@@ -73,6 +73,7 @@ Open: 👉 http://localhost:8000
 
 Create a `.env` file inside `uploads/`:
 
+```env
 ASSEMBLYAI_API_KEY=your_key
 GEMINI_API_KEY=your_key
 MURF_API_KEY=your_key
@@ -80,16 +81,16 @@ SECRET_KEY=optional_secret_for_encryption
 
 
 
----
 
-### 🧩 Architecture  
+### 🧩 Architecture
 ```markdown
 ## 🧩 Architecture
 
+```mermaid
 sequenceDiagram
     autonumber
     participant U as 👤 User
-    participant B as 🌐 Browser (Silly AI UI)
+    participant B as 🌐 Browser (AVA UI)
     participant API as ⚡ FastAPI Backend
     participant STT as 🎙️ AssemblyAI (STT)
     participant LLM as 🧠 Google Gemini (LLM)
@@ -105,21 +106,3 @@ sequenceDiagram
     TTS-->>API: 🎵 Audio File (mp3)
     API-->>B: 📦 { transcript, llmResponse, audioFile }
     B-->>U: 📝 Show Text + ▶ Play Audio
-
-
-
-## 🗂️ Project Structure
-
-```bash
-Silly-AI/
-├─ app.py                # FastAPI app
-├─ config.py             # Config & key mgmt
-├─ schemas.py            # Pydantic models
-├─ services/             # API integrations (STT, LLM, TTS)
-├─ templates/            # HTML frontend
-├─ static/               # JS, CSS, icons
-├─ uploads/              # User configs & data
-├─ image/                # Logo & screenshots
-├─ requirements.txt      # Python deps
-├─ Dockerfile            # Deployment
-└─ README.md             # You are here
