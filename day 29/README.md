@@ -2,11 +2,7 @@
   <img src="image/Silly AI .png" width="120" height="120" alt="Silly AI logo" />
 </p>
 
-<h1 align="center">🎭 Silly AI — Your Fun Voice Assistant</h1>
-
-## <p align="center"> <h1>🤖 SILLY AI  <h1>
-**Smart Interactive Light-hearted Language Yielding AI**  
-</p>
+<h1 align="center">🎭 Silly AI — **Smart Interactive Light-hearted Language Yielding AI**  </h1>
 
 <p align="center">
   A quirky, PWA-ready voice assistant that listens, laughs, and replies with style.  
