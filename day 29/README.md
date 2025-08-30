@@ -4,7 +4,7 @@
 
 <h1 align="center">🎭 Silly AI — Your Fun Voice Assistant</h1>
 
-#<p align="center"> 🤖 SILLY AI  
+## <p align="center"> <h1>🤖 SILLY AI  <h1>
 **Smart Interactive Light-hearted Language Yielding AI**  
 </p>
 
