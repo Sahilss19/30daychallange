@@ -105,7 +105,7 @@ sequenceDiagram
 
 ---
 
-### 7. **Quick Start (Installation Guide)**
+### **Quick Start (Installation Guide)**
 ```markdown
 ## 🚀 Quick Start
 
@@ -141,7 +141,7 @@ npm start
 
 ---
 
-### 8. **Project Structure**
+### **Project Structure**
 ```markdown
 ## 📂 Project Structure
 
