@@ -4,8 +4,9 @@
 
 <h1 align="center">🎭 Silly AI — Your Fun Voice Assistant</h1>
 
-# 🤖 SILLY AI  
+#<p align="center"> 🤖 SILLY AI  
 **Smart Interactive Light-hearted Language Yielding AI**  
+</p>
 
 <p align="center">
   A quirky, PWA-ready voice assistant that listens, laughs, and replies with style.  
