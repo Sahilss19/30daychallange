@@ -4,17 +4,24 @@
 
 <h1 align="center">🎭 Silly AI — Your Fun Voice Assistant</h1>
 
+# 🤖 SILLY AI  
+**Smart Interactive Light-hearted Language Yielding AI**  
+
 <p align="center">
   A quirky, PWA-ready voice assistant that listens, laughs, and replies with style.  
-  <br/>Speak naturally, get witty responses, hear lifelike voice replies, and enjoy a playful UI.
+  <br/>Speak naturally, get witty responses, hear lifelike voice replies, and enjoy a playful UI.  
+  <br/><b>Because serious AIs are boring!</b> ✨
 </p>
 
 <p align="center">
   <a href="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white"><img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" alt="Python 3.10+" /></a>
   <a href="https://img.shields.io/badge/FastAPI-⚡-009688?logo=fastapi&logoColor=white"><img src="https://img.shields.io/badge/FastAPI-⚡-009688?logo=fastapi&logoColor=white" alt="FastAPI" /></a>
-  <a href="https://img.shields.io/badge/PWA-Ready-5A0FC8?logo=pwa&logoColor=white"><img src="https://img.shields.io/badge/PWA-Ready-5A0FC8?logo=pwa&logoColor=white" alt="PWA Ready" /></a>
-  <a href="https://img.shields.io/badge/License-MIT-blue"><img src="https://img.shields.io/badge/License-MIT-blue" alt="License" /></a>
-</p>
+  <a href="https://murf.ai/"><img src="https://img.shields.io/badge/MurfAI-🎤-purple?logo=google-voice&logoColor=white" alt="Murf AI" />
+  </a>
+  <a href="https://ai.google/"><img src="https://img.shields.io/badge/Gemini-∞-4285F4?logo=google&logoColor=white" alt="Gemini" />
+  </a>
+  <a href="https://serpapi.com/"><img src="https://img.shields.io/badge/SerpAPI-🔍-00C58E?logo=google&logoColor=white" alt="SerpAPI" />
+  </a>
 
 ---
 
@@ -232,7 +239,8 @@ docker build -t silly-ai .
 docker run -p 8000:8000 silly-ai
 
 
-👉 Live Demo: silly19-ai.onrender.com
+## 🚀 Live Demo
+🔗 [Click here to try SillyAI](https://silly19-ai.onrender.com)
 
 ## 📄 License
 
