@@ -132,44 +132,107 @@ pip install -r requirements.txt
 
 Create a `.env` file inside `uploads/`:
 
+```env
 ASSEMBLYAI_API_KEY=your_key
 GEMINI_API_KEY=your_key
 MURF_API_KEY=your_key
 SECRET_KEY=optional_secret_for_encryption
 
+```
+
+### 🧩 Architecture  
+```markdown
+## 🧩 Architecture
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as 👤 User
+    participant B as 🌐 Browser (Silly AI UI)
+    participant API as ⚡ FastAPI Backend
+    participant STT as 🎙 AssemblyAI (STT)
+    participant LLM as 🧠 Google Gemini (LLM)
+    participant TTS as 🔊 Murf AI (TTS)
+
+    U->>B: 🎤 Speak
+    B->>API: 📩 POST /llm/query (audio + session_id)
+    API->>STT: 🎙 Transcribe Audio
+    STT-->>API: 📄 Transcript
+    API->>LLM: 💬 Chat with Context (session history)
+    LLM-->>API: 🤖 LLM Response
+    API->>TTS: 🔊 Convert to Voice
+    TTS-->>API: 🎵 Audio File (mp3)
+    API-->>B: 📦 { transcript, llmResponse, audioFile }
+    B-->>U: 📝 Show Text + ▶ Play Audio
+
+```
+
 ---
 
-## 🏗 Architecture
+### 7. **Quick Start (Installation Guide)**
+```markdown
+## 🚀 Quick Start
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant SillyAI_UI
-    participant Express_Server
-    participant AI_Model
+```bash
+# Clone repo
+git clone https://github.com/your-username/silly-ai.git
+cd silly-ai
 
-    User->>SillyAI_UI: Speaks/Types input
-    SillyAI_UI->>Express_Server: Sends request
-    Express_Server->>AI_Model: Process input
-    AI_Model-->>Express_Server: Returns response
-    Express_Server-->>SillyAI_UI: Sends reply
-    SillyAI_UI-->>User: Shows/Speaks output
+# Install dependencies
+npm install
+
+# Run backend
+cd backend
+npm start
+
+# Run frontend
+cd frontend
+npm start
+
+```
+
+## 🧱 Core Features
+
+🎤 Voice & Text Chat → Speak or type, Silly AI replies
+
+🧠 Session Memory → Context preserved for ongoing chats
+
+🔗 Speech Pipeline → AssemblyAI (STT) → Gemini (LLM) → Murf (TTS)
+
+😎 Playful Persona → Replies with humor & casual tone
+
+📱 PWA Ready → Works on desktop & mobile, installable as an app
+
+---
+
+### 8. **Project Structure**
+```markdown
+## 📂 Project Structure
+
+Silly-AI/
+├─ app.py                # FastAPI app
+├─ config.py             # Config & key mgmt
+├─ schemas.py            # Pydantic models
+├─ services/             # API integrations (STT, LLM, TTS)
+├─ templates/            # HTML frontend
+├─ static/               # JS, CSS, icons
+├─ uploads/              # User configs & data
+├─ image/                # Logo & screenshots
+├─ requirements.txt      # Python deps
+├─ Dockerfile            # Deployment
+└─ README.md             # You are here
+
+## ☁️ Deployment
+▶ Local
+uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+
+## 🐳 Render / Docker
+docker build -t silly-ai .
+docker run -p 8000:8000 silly-ai
 
 
+👉 Live Demo: silly19-ai.onrender.com
 
-## 🏗 Architecture
+## 📄 License
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant SillyAI_UI
-    participant Express_Server
-    participant AI_Model
-
-    User->>SillyAI_UI: Speaks/Types input
-    SillyAI_UI->>Express_Server: Sends request
-    Express_Server->>AI_Model: Process input
-    AI_Model-->>Express_Server: Returns response
-    Express_Server-->>SillyAI_UI: Sends reply
-    SillyAI_UI-->>User: Shows/Speaks output
-
+MIT License © 2025 Sahil Kulria
