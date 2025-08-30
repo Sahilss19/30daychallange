@@ -70,7 +70,8 @@ Open: 👉 http://localhost:8000
 
 ---
 
-#🔐 Environment & Config
+
+Environment & Config
 
 Create a .env file inside uploads/:
 
