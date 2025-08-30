@@ -68,6 +68,8 @@ python app.py
 
 Open: 👉 http://localhost:8000
 
+---
+
 🔐 Environment & Config
 
 Create a .env file inside uploads/:
@@ -76,6 +78,9 @@ ASSEMBLYAI_API_KEY=your_key
 GEMINI_API_KEY=your_key
 MURF_API_KEY=your_key
 SECRET_KEY=optional_secret_for_encryption
+
+
+---
 
 🧩 Architecture
 
@@ -99,7 +104,7 @@ sequenceDiagram
     API-->>B: 📦 { transcript, llmResponse, audioFile }
     B-->>U: 📝 Show Text + ▶ Play Audio
 
-
+---
 
 🧱 Core Features
 
@@ -112,6 +117,9 @@ Speech Pipeline → AssemblyAI (STT) → Gemini (LLM) → Murf (TTS).
 Playful Persona → Replies with humor & casual tone.
 
 PWA Ready → Works on desktop & mobile, installable as an app.
+
+---
+
 
 🗂️ Project Structure
 Silly-AI/
@@ -127,16 +135,26 @@ Silly-AI/
 ├─ Dockerfile            # Deployment
 └─ README.md             # You are here
 
+
+---
+
+
 ☁️ Deployment
 Local
 uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+
+
+---
 
 Render / Docker
 docker build -t silly-ai .
 docker run -p 8000:8000 silly-ai
 
+---
 
 Live Demo: 👉 silly19-ai.onrender.com
+
+---
 
 📄 License
 
