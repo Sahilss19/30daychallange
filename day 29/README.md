@@ -28,7 +28,6 @@
 - 📝 **Text-only chat** for quick testing  
 - 🔊 **Speech-to-text & lifelike voice replies**  
 - 🎨 **Playful, animated UI** with smooth interactions  
-- 📱 **Installable PWA** with offline caching  
 - 🔐 **API key config** via `.env` or in-app settings  
 
 <div align="center">
