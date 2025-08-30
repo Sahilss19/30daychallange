@@ -54,7 +54,7 @@
 - API keys for Speech-to-Text, LLM, and TTS  
 
 ```bash
-# Create virtual env
+
 python -m venv .venv
 source .venv/bin/activate   # macOS/Linux
 . .\.venv\Scripts\Activate.ps1  # Windows
@@ -70,7 +70,7 @@ Open: 👉 http://localhost:8000
 
 ---
 
-🔐 Environment & Config
+#🔐 Environment & Config
 
 Create a .env file inside uploads/:
 
