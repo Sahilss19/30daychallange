@@ -141,8 +141,6 @@ SECRET_KEY=optional_secret_for_encryption
 ```
 
 ### 🧩 Architecture  
-```markdown
-## 🧩 Architecture
 
 ```mermaid
 sequenceDiagram
@@ -221,6 +219,9 @@ Silly-AI/
 ├─ requirements.txt      # Python deps
 ├─ Dockerfile            # Deployment
 └─ README.md             # You are here
+
+```
+
 
 ## ☁️ Deployment
 ▶ Local
