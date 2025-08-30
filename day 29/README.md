@@ -53,7 +53,7 @@
 - Python 3.10+  
 - API keys for Speech-to-Text, LLM, and TTS  
 
-```bash
+
 
 python -m venv .venv
 source .venv/bin/activate   # macOS/Linux
@@ -67,3 +67,59 @@ python app.py
 
 
 Open: 👉 http://localhost:8000
+
+
+## 🔐 Environment & Config
+
+Create a `.env` file inside `uploads/`:
+
+ASSEMBLYAI_API_KEY=your_key
+GEMINI_API_KEY=your_key
+MURF_API_KEY=your_key
+SECRET_KEY=optional_secret_for_encryption
+
+
+
+---
+
+### 🧩 Architecture  
+```markdown
+## 🧩 Architecture
+
+sequenceDiagram
+    autonumber
+    participant U as 👤 User
+    participant B as 🌐 Browser (Silly AI UI)
+    participant API as ⚡ FastAPI Backend
+    participant STT as 🎙️ AssemblyAI (STT)
+    participant LLM as 🧠 Google Gemini (LLM)
+    participant TTS as 🔊 Murf AI (TTS)
+
+    U->>B: 🎤 Speak
+    B->>API: 📩 POST /llm/query (audio + session_id)
+    API->>STT: 🎙️ Transcribe Audio
+    STT-->>API: 📄 Transcript
+    API->>LLM: 💬 Chat with Context (session history)
+    LLM-->>API: 🤖 LLM Response
+    API->>TTS: 🔊 Convert to Voice
+    TTS-->>API: 🎵 Audio File (mp3)
+    API-->>B: 📦 { transcript, llmResponse, audioFile }
+    B-->>U: 📝 Show Text + ▶ Play Audio
+
+
+
+## 🗂️ Project Structure
+
+```bash
+Silly-AI/
+├─ app.py                # FastAPI app
+├─ config.py             # Config & key mgmt
+├─ schemas.py            # Pydantic models
+├─ services/             # API integrations (STT, LLM, TTS)
+├─ templates/            # HTML frontend
+├─ static/               # JS, CSS, icons
+├─ uploads/              # User configs & data
+├─ image/                # Logo & screenshots
+├─ requirements.txt      # Python deps
+├─ Dockerfile            # Deployment
+└─ README.md             # You are here
